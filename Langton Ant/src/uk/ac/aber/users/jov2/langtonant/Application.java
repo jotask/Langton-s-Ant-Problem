@@ -3,9 +3,12 @@ package uk.ac.aber.users.jov2.langtonant;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Application implements ApplicationListener {
 
+	private SpriteBatch batch;
+	
 	@Override
 	public void create() {}
 
