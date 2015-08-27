@@ -8,16 +8,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
-import uk.ac.aber.users.jov2.langtonant.Ant.TURN;
-
 public class Board {
 	
 	private OrthographicCamera camera;
 	
-	private static final int SIZE = 75;
+	public static final int SIZE = 75;
 	private Cell[][] cells;
 	
-	private Ant ant;
+	private static final int ANTS = 1;
+	private Ant[] ant;
 	
 	ShapeRenderer sr = new ShapeRenderer();
 	
@@ -33,18 +32,37 @@ public class Board {
 			}
 		}
 		Random rand = new Random();
-		ant = new Ant(rand.nextInt(SIZE), rand.nextInt(SIZE));
+		ant = new Ant[ANTS];
+		for(int i = 0; i < ant.length; i++){
+			ant[i] = new Ant(rand.nextInt(SIZE), rand.nextInt(SIZE));
+		}
 	}
 	
 	public void update(float delta){
-		boolean state = cells[ant.getPosition().x][ant.getPosition().y].isState();
-		if(state){
-			ant.turn(Ant.TURN.LEFT);
-		}else{
-			ant.turn(TURN.RIGHT);
+		// TODO check if the ant is out of bounds
+		for(int i = 0; i < ant.length; i++){
+			boolean state = cells[ant[i].getPosition().x][ant[i].getPosition().y].isState();
+			if(state){
+				ant[i].turn(Ant.TURN.LEFT);
+			}else{
+				ant[i].turn(Ant.TURN.RIGHT);
+			}
+			cells[ant[i].getPosition().x][ant[i].getPosition().y].toggle();
+			ant[i].move();
+			
+			Vector2 p = ant[i].getPosition();
+			if(p.x < 0){
+				p.setX(SIZE - 1);
+			}else if(p.x > SIZE - 1){
+				p.setX(0);
+			}
+			if(p.y < 0){
+				p.setY(SIZE - 1);
+			}else if(p.y > SIZE - 1){
+				p.setY(0);
+			}
+			
 		}
-		cells[ant.getPosition().x][ant.getPosition().y].toggle();
-		ant.move();
 	}
 	
 	public void render(SpriteBatch sb){
@@ -55,7 +73,7 @@ public class Board {
 				cells[i][j].render(sb);
 			}
 		}
-		ant.render(sb);
+		for(int i = 0; i < ant.length; i++) ant[i].render(sb);
 		sb.end();
 		
 		sr.setProjectionMatrix(camera.combined);
@@ -65,7 +83,7 @@ public class Board {
 				cells[i][j].renderDebug(sr);
 			}
 		}
-		ant.debugRender(sr);
+		for(int i = 0; i < ant.length; i++) ant[i].debugRender(sr);
 		sr.end();
 	}
 

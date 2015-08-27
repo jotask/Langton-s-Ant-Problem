@@ -25,7 +25,7 @@ public class Ant {
 	public Ant(int x, int y) {
 		pos = new Vector2(x, y);
 		
-		currentDir = DIRECTION.LEFT;
+		currentDir = DIRECTION.DOWN;
 		
 	}
 	
@@ -65,5 +65,6 @@ public class Ant {
 	}
 	
 	public Vector2 getPosition() { return this.pos; }
+	public DIRECTION getDir(){ return currentDir; }
 
 }
