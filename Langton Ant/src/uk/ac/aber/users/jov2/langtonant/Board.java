@@ -36,7 +36,8 @@ public class Board {
 	}
 	
 	public void update(float delta){
-		ant.update(delta);
+		ant.turn(Ant.TURN.LEFT);
+		ant.move();
 	}
 	
 	public void render(SpriteBatch sb){
