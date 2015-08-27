@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Cell {
 	
-	public static final int CELLSIZE = 8;
+	public static final int CELLSIZE = 4;
 	
 	private boolean state;
 	private int x, y;

@@ -1,5 +1,7 @@
 package uk.ac.aber.users.jov2.langtonant;
 
+import java.util.Random;
+
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -23,10 +25,12 @@ public class Ant {
 	private DIRECTION currentDir;
 	
 	public Ant(int x, int y) {
+		this(x, y, DIRECTION.values()[new Random().nextInt(DIRECTION.values().length)]);
+	}
+	
+	public Ant(int x, int y, DIRECTION dir){
 		pos = new Vector2(x, y);
-		
-		currentDir = DIRECTION.DOWN;
-		
+		currentDir = dir;
 	}
 	
 	public void update(float delta){ }

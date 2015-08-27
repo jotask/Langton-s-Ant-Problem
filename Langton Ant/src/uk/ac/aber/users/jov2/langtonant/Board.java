@@ -12,15 +12,18 @@ public class Board {
 	
 	private OrthographicCamera camera;
 	
-	public static final int SIZE = 75;
+	public final int SIZE;
 	private Cell[][] cells;
 	
-	private static final int ANTS = 1;
+	private static final int ANTS = 4;
 	private Ant[] ant;
 	
 	ShapeRenderer sr = new ShapeRenderer();
 	
 	public Board() {
+		
+		SIZE = Gdx.graphics.getWidth() / Cell.CELLSIZE;
+		
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
