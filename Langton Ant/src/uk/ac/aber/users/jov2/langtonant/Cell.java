@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class Cell {
 	
-	private static final int CELLSIZE = 8;
+	public static final int CELLSIZE = 8;
 	
 	private boolean state;
 	private int x, y;
@@ -15,8 +15,6 @@ public class Cell {
 		this.state = state;
 		this.x = x;
 		this.y = y;
-		
-		if(x == 5 && y == 5) this.state = true;
 	}
 
 	public boolean isState() { return state; }
@@ -27,9 +25,9 @@ public class Cell {
 	
 	public void renderDebug(ShapeRenderer sr) {
 		if(state){
-			sr.setColor(Color.CYAN);
+			sr.setColor(Color.BLACK);
 		}else{
-			sr.setColor(Color.CORAL);
+			sr.setColor(Color.WHITE);
 		}
 		sr.box(x * CELLSIZE, y * CELLSIZE, 0, CELLSIZE, CELLSIZE, 0);
 	}

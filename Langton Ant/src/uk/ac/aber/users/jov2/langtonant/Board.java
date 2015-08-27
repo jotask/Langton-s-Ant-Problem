@@ -15,6 +15,8 @@ public class Board {
 	private static final int SIZE = 75;
 	private Cell[][] cells;
 	
+	private Ant ant;
+	
 	ShapeRenderer sr = new ShapeRenderer();
 	
 	public Board() {
@@ -30,11 +32,11 @@ public class Board {
 				cells[i][j] = new Cell(i, j, ran.nextBoolean());
 			}
 		}
-		
+		ant = new Ant(SIZE / 2, SIZE / 2);
 	}
 	
 	public void update(float delta){
-
+		ant.update(delta);
 	}
 	
 	public void render(SpriteBatch sb){
@@ -45,6 +47,7 @@ public class Board {
 				cells[i][j].render(sb);
 			}
 		}
+		ant.render(sb);
 		sb.end();
 		
 		sr.setProjectionMatrix(camera.combined);
@@ -54,8 +57,12 @@ public class Board {
 				cells[i][j].renderDebug(sr);
 			}
 		}
+		ant.debugRender(sr);
 		sr.end();
+	}
 
+	public void dispose() {
+		sr.dispose();
 	}
 
 }

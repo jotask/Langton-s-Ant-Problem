@@ -18,7 +18,10 @@ public class Application implements ApplicationListener {
 	}
 
 	@Override
-	public void dispose() {}
+	public void dispose() {
+		batch.dispose();
+		board.dispose();
+	}
 
 	@Override
 	public void pause() {}
@@ -38,9 +41,11 @@ public class Application implements ApplicationListener {
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		
+		config.title = "Langton's Ant Problem";
 		config.width = 600;
 		config.height = 600;
 		config.fullscreen = false;
+		config.resizable = false;
 		
 		new LwjglApplication(new Application(), config);
 	}
