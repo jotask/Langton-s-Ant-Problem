@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
+import uk.ac.aber.users.jov2.langtonant.Ant.TURN;
+
 public class Board {
 	
 	private OrthographicCamera camera;
@@ -36,7 +38,13 @@ public class Board {
 	}
 	
 	public void update(float delta){
-		ant.turn(Ant.TURN.LEFT);
+		boolean state = cells[ant.getPosition().x][ant.getPosition().y].isState();
+		if(state){
+			ant.turn(Ant.TURN.LEFT);
+		}else{
+			ant.turn(TURN.RIGHT);
+		}
+		cells[ant.getPosition().x][ant.getPosition().y].toggle();
 		ant.move();
 	}
 	

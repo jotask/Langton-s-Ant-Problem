@@ -31,5 +31,7 @@ public class Cell {
 		}
 		sr.box(x * CELLSIZE, y * CELLSIZE, 0, CELLSIZE, CELLSIZE, 0);
 	}
+	
+	public void toggle(){ this.state = !state; }
 
 }
