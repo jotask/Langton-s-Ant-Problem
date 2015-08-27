@@ -16,13 +16,6 @@ public class Application implements ApplicationListener {
 		batch = new SpriteBatch();
 		board = new Board();
 	}
-
-	@Override
-	public void dispose() {
-		batch.dispose();
-		board.dispose();
-	}
-
 	@Override
 	public void pause() {}
 
@@ -33,10 +26,17 @@ public class Application implements ApplicationListener {
 	}
 
 	@Override
-	public void resize(int arg0, int arg1) {}
+	public void resize(int width, int height) {}
 
 	@Override
 	public void resume() {}
+
+	@Override
+	public void dispose() {
+		batch.dispose();
+		board.dispose();
+	}
+
 	
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();

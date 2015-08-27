@@ -27,14 +27,13 @@ public class Board {
 		
 		cells = new Cell[SIZE][SIZE];
 		
-		Random ran = new Random();
-		
 		for(int i = 0; i < cells.length; i++){
 			for(int j = 0; j < cells[0].length; j++){
-				cells[i][j] = new Cell(i, j, ran.nextBoolean());
+				cells[i][j] = new Cell(i, j, false);
 			}
 		}
-		ant = new Ant(SIZE / 2, SIZE / 2);
+		Random rand = new Random();
+		ant = new Ant(rand.nextInt(SIZE), rand.nextInt(SIZE));
 	}
 	
 	public void update(float delta){
